@@ -2,6 +2,7 @@ package com.prueba.reproductor_api.service;
 
 import java.util.List;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.prueba.reproductor_api.model.Playlist;
@@ -14,11 +15,16 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
+
     private final PlaylistRepository playlistRepository;
 
     @Override
     public Playlist createPlaylist(Playlist playlist) {
-        return playlistRepository.save(playlist);
+        try {
+            return playlistRepository.save(playlist);
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalArgumentException("Ya existe una playlist con ese nombre");
+        }
     }
 
     @Override
@@ -29,12 +35,15 @@ public class PlaylistServiceImpl implements PlaylistService {
     @Override
     public Playlist getPlaylistByName(String name) {
         return playlistRepository.findByName(name)
-        .orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
+                .orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
     }
 
     @Transactional
     @Override
     public void deletePlaylistByName(String name) {
+        if (!playlistRepository.existsByName(name)) {
+            throw new EntityNotFoundException("Playlist no encontrada");
+        }
         playlistRepository.deleteByName(name);
     }
 }
