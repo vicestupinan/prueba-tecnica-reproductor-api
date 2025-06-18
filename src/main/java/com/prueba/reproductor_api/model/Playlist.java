@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class Playlist {
     private Long id;
 
     @JsonProperty("nombre")
+    @NotBlank(message = "El nombre es obligatorio")
     @Column(nullable = false, unique = true)
     private String name;
 
