@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.prueba.reproductor_api.model.Playlist;
 import com.prueba.reproductor_api.service.PlaylistService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -23,9 +24,11 @@ public class PlaylistController {
     private final PlaylistService playlistService;
     
     @PostMapping
-    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+    public ResponseEntity<Playlist> createPlaylist(@Valid @RequestBody Playlist playlist) {
         Playlist created = playlistService.createPlaylist(playlist);
-        URI location = URI.create("/lists" + created.getName());
+        String rawName = created.getName();
+        String encodedName = rawName.replace(" ", "%20");
+        URI location = URI.create("/lists/" + encodedName);
         return ResponseEntity.created(location).body(created);
     }
 
