@@ -8,6 +8,7 @@ import com.prueba.reproductor_api.model.Playlist;
 import com.prueba.reproductor_api.repository.PlaylistRepository;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -31,6 +32,7 @@ public class PlaylistServiceImpl implements PlaylistService {
         .orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
     }
 
+    @Transactional
     @Override
     public void deletePlaylistByName(String name) {
         playlistRepository.deleteByName(name);
