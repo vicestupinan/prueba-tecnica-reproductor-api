@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "01a67c87-d20a-49b0-8b11-c1ceff29542c",
+		"name": "Prueba tecnia playlist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33246171"
+	},
+	"item": [
+		{
+			"name": "Ver todas las playlist",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Smartphone XYZ\",\r\n  \"description\": \"Smartphone de última generación con 8GB RAM y 128GB almacenamiento\",\r\n  \"price\": 599.99,\r\n  \"stock\": 50,\r\n  \"sku\": \"SMRT-XYZ-128\",\r\n  \"categoryId\": \"52396551-f7ed-4fc7-8f79-ad83a777219e\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar playlist por nombre",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lists/Mi lista",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lists",
+						"Mi lista"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear playlist",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Mi lista\",\r\n  \"descripcion\": \"Lista de prueba\",\r\n  \"canciones\": [\r\n    {\r\n      \"titulo\": \"Imagine\",\r\n      \"artista\": \"John Lennon\",\r\n      \"album\": \"Imagine\",\r\n      \"anno\": \"1971\",\r\n      \"genero\": \"Rock\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar playlist",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "user123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lists/Mi lista",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lists",
+						"Mi lista"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
