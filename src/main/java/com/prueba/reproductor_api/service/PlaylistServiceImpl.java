@@ -26,7 +26,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist getPlaylistByName(String name) {
-        return playlistRepository.findByName(name);
+        return playlistRepository.findByName(name).orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
     }
 
     @Override
