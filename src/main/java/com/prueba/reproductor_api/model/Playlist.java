@@ -2,6 +2,7 @@ package com.prueba.reproductor_api.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
@@ -26,6 +27,7 @@ import lombok.NoArgsConstructor;
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private Long id;
 
     @JsonProperty("nombre")
