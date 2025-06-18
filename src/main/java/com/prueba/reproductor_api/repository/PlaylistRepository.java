@@ -7,5 +7,8 @@ import com.prueba.reproductor_api.model.Playlist;
 
 @Repository
 public interface PlaylistRepository extends JpaRepository<Playlist, Long> {
-    
+
+    Playlist findByName(String name);
+
+    void deleteByName(String name);
 }
