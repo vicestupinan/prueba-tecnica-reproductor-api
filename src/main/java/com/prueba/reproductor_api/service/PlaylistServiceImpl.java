@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.prueba.reproductor_api.model.Playlist;
 import com.prueba.reproductor_api.repository.PlaylistRepository;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,7 +27,8 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist getPlaylistByName(String name) {
-        return playlistRepository.findByName(name).orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
+        return playlistRepository.findByName(name)
+        .orElseThrow(() -> new EntityNotFoundException("Playlist no encontrada"));
     }
 
     @Override
