@@ -31,7 +31,7 @@ public class Song {
     private String album;
 
     @JsonProperty("anno")
-    private String year;
+    private String releaseYear;
 
     @JsonProperty("genero")
     private String genre;
