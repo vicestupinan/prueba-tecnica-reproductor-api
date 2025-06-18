@@ -30,6 +30,12 @@ public class PlaylistController {
     }
 
     @GetMapping
+    public ResponseEntity<Iterable<Playlist>> getAllPlaylists() {
+        Iterable<Playlist> playlists = playlistService.getAllPlaylists();
+        return ResponseEntity.ok(playlists);
+    }
+
+    @GetMapping("/{name}")
     public ResponseEntity<Playlist> getPlaylistByName(@PathVariable String name) {
         Playlist playlist = playlistService.getPlaylistByName(name);
         return ResponseEntity.ok(playlist);
