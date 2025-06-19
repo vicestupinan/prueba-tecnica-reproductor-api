@@ -44,6 +44,9 @@ cd prueba-tecnica-reproductor-api
 
 ./mvnw spring-boot:run
 ```
+
+Accesso a la API: http://localhost:8080
+
 ---
 
 ## Endpoints
