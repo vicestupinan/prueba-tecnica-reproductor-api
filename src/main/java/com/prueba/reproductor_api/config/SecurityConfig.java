@@ -35,6 +35,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/lists/**").hasAnyRole("ADMIN", "USER")
                 .anyRequest().authenticated()
